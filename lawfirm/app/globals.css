@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Cormorant Garamond', serif;
+    touch-action: manipulation;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+  /* Improve touch targets on mobile */
+  @media (max-width: 640px) {
+    button, a {
+      @apply min-h-[44px] min-w-[44px];
+    }
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.parallax {
+  transform: translateY(var(--scroll-offset));
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.glow-on-hover {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  color: #BF953F;
+}
+
+/* Optimize hover effects for touch devices */
+@media (hover: hover) {
+  .glow-on-hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #BF953F;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+
+  .glow-on-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.floating-contact {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.service-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(191, 149, 63, 0.1);
+  will-change: transform;
+}
+
+/* Optimize hover effects for non-touch devices */
+@media (hover: hover) {
+  .service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(191, 149, 63, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Active state for touch devices */
+@media (hover: none) {
+  .service-card:active {
+    transform: scale(0.98);
+    border-color: rgba(191, 149, 63, 0.3);
+  }
+}
+
+.gold-border {
+  border: 1px solid rgba(191, 149, 63, 0.3);
+}
+
+.gold-text {
+  color: #BF953F;
+}
+
+.mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.backdrop-blur-strong {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.scroll-indicator {
+  animation: bounce 2s infinite;
+  will-change: transform;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .fade-in {
+    animation-duration: 0.6s;
+  }
+
+  .reveal {
+    transition-duration: 0.6s;
+  }
+
+  .service-card {
+    transition-duration: 0.2s;
+  }
+
+  .mobile-menu {
+    transition-duration: 0.25s;
+  }
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -20,6 +20,15 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrolled])
 
+  useEffect(() => {
+    // Prevent scrolling when mobile menu is open
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [mobileMenuOpen])
+
   const navItems = [
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
@@ -29,13 +38,13 @@ export function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-black/95 backdrop-blur-strong shadow-lg' : 'bg-transparent'
+      scrolled ? 'bg-black/95 backdrop-blur-xl shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-20">
           <Link 
             href="/" 
-            className="text-2xl font-bold tracking-tight gold-gradient"
+            className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] to-[#FCF6BA] hover:from-[#FCF6BA] hover:to-[#BF953F] transition-all duration-300"
             style={{ fontFamily: 'Playfair Display' }}
           >
             C De Cerff Inc.
@@ -47,18 +56,20 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white/90 hover:text-[#BF953F] transition-colors text-sm uppercase tracking-wider"
+                className="text-white/90 hover:text-[#BF953F] transition-colors duration-300 text-sm uppercase tracking-wider relative group"
                 style={{ fontFamily: 'Cormorant Garamond' }}
               >
                 {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#BF953F] transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#BF953F] p-2"
+            className="md:hidden text-[#BF953F] p-2 hover:bg-white/10 rounded-full transition-colors duration-300"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
               <LucideX className="h-6 w-6" />
@@ -71,18 +82,22 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-24 right-0 bottom-0 w-64 bg-black/60 backdrop-blur-lg border-l border-[#BF953F]/20 shadow-lg transition-transform duration-300 ease-in-out transform ${
+        className={`fixed top-20 right-0 bottom-0 w-72 bg-gradient-to-b from-black/95 to-black/98 backdrop-blur-2xl border-l border-[#BF953F]/20 shadow-2xl transition-all duration-500 ease-in-out transform ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
-        <div className="flex flex-col space-y-6 p-6">
-          {navItems.map((item) => (
+        <div className="flex flex-col p-6">
+          {navItems.map((item, index) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-white/90 hover:text-[#BF953F] transition-colors py-2 text-sm uppercase tracking-wider"
-              style={{ fontFamily: 'Cormorant Garamond' }}
+              className="text-white/90 hover:text-[#BF953F] transition-all duration-300 py-4 text-lg uppercase tracking-wider border-b border-[#BF953F]/10 first:border-t"
               onClick={() => setMobileMenuOpen(false)}
+              style={{
+                fontFamily: 'Cormorant Garamond',
+                animation: mobileMenuOpen ? `slideIn 0.5s ease forwards ${index * 0.1}s` : 'none',
+                opacity: 0,
+              }}
             >
               {item.name}
             </Link>
@@ -91,12 +106,25 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 md:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
+      <div
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500 ${
+          mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      <style jsx global>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </nav>
   )
 }

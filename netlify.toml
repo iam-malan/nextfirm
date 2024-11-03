@@ -1,10 +1,6 @@
 [build]
   command = "cd lawfirm && npm install && npm run build"
-  publish = "lawfirm/.next"
+  publish = "lawfirm/out"
 
 [build.environment]
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
   NODE_VERSION = "18"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"

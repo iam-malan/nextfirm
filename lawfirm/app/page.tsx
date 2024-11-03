@@ -39,8 +39,6 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const parallaxOffset = -scrollY * 0.5
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Floating Contact Button */}
@@ -53,12 +51,9 @@ export default function HomePage() {
 
       <main className="relative">
         {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24 sm:pt-32">
-          {/* Parallax Background */}
-          <div 
-            className="absolute inset-0 z-0"
-            style={{ transform: `translateY(${parallaxOffset}px)` }}
-          >
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24">
+          {/* Background */}
+          <div className="absolute inset-0 z-0">
             <Image
               src="/images/lawbooks.png"
               alt="Legal background"
@@ -76,7 +71,7 @@ export default function HomePage() {
           {/* Hero Content */}
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight fade-in gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight fade-in gold-gradient pb-4" style={{ fontFamily: 'Playfair Display' }}>
                 Excellence in Legal Advocacy
               </h1>
               <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-gray-200 fade-in max-w-2xl mx-auto px-4" style={{animationDelay: '0.2s', fontFamily: 'Cormorant Garamond'}}>

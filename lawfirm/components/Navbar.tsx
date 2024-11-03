@@ -20,7 +20,12 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrolled])
 
-  const navItems = ['About', 'Services', 'Testimonials', 'Contact']
+  const navItems = [
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Testimonials', href: '/testimonials' },
+    { name: 'Contact', href: '/contact' }
+  ]
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -40,12 +45,12 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link
-                key={item}
-                href={`/${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="text-white/90 hover:text-[#BF953F] transition-colors text-sm uppercase tracking-wider"
                 style={{ fontFamily: 'Cormorant Garamond' }}
               >
-                {item}
+                {item.name}
               </Link>
             ))}
           </div>
@@ -66,20 +71,20 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-24 right-0 bottom-0 w-64 bg-black shadow-lg transition-transform duration-300 ease-in-out transform ${
+        className={`fixed top-24 right-0 bottom-0 w-64 bg-black/60 backdrop-blur-lg border-l border-[#BF953F]/20 shadow-lg transition-transform duration-300 ease-in-out transform ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
         <div className="flex flex-col space-y-6 p-6">
           {navItems.map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className="text-white/90 hover:text-[#BF953F] transition-colors py-2 text-sm uppercase tracking-wider"
               style={{ fontFamily: 'Cormorant Garamond' }}
               onClick={() => setMobileMenuOpen(false)}
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </div>

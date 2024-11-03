@@ -66,7 +66,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-24 right-0 bottom-0 w-64 bg-black/95 backdrop-blur-strong shadow-lg transition-transform duration-300 ease-in-out transform ${
+        className={`fixed top-24 right-0 bottom-0 w-64 bg-black shadow-lg transition-transform duration-300 ease-in-out transform ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
@@ -75,7 +75,7 @@ export function Navbar() {
             <Link
               key={item}
               href={`/${item.toLowerCase()}`}
-              className="text-white/80 hover:text-[#BF953F] transition-colors py-2 text-sm uppercase tracking-wider"
+              className="text-white/90 hover:text-[#BF953F] transition-colors py-2 text-sm uppercase tracking-wider"
               style={{ fontFamily: 'Cormorant Garamond' }}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -88,7 +88,7 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 bg-black/50 md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}

@@ -99,11 +99,11 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
+          </div>
 
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator hidden sm:block">
-              <LucideChevronDown className="w-6 h-6 text-[#BF953F]" />
-            </div>
+          {/* Scroll Indicator - Moved below buttons */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 scroll-indicator hidden sm:block mt-12">
+            <LucideChevronDown className="w-6 h-6 text-[#BF953F]" />
           </div>
         </section>
 

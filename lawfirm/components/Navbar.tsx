@@ -38,7 +38,7 @@ export function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-black/95 backdrop-blur-xl shadow-lg' : 'bg-transparent'
+      scrolled ? 'bg-black shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -56,7 +56,7 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white/90 hover:text-[#BF953F] transition-colors duration-300 text-sm uppercase tracking-wider relative group"
+                className="text-white hover:text-[#BF953F] transition-colors duration-300 text-sm uppercase tracking-wider relative group"
                 style={{ fontFamily: 'Cormorant Garamond' }}
               >
                 {item.name}
@@ -82,33 +82,42 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-20 right-0 bottom-0 w-72 bg-gradient-to-b from-black/95 to-black/98 backdrop-blur-2xl border-l border-[#BF953F]/20 shadow-2xl transition-all duration-500 ease-in-out transform ${
+        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black shadow-2xl transition-all duration-500 ease-in-out transform z-50 ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
-        <div className="flex flex-col p-6">
-          {navItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-white/90 hover:text-[#BF953F] transition-all duration-300 py-4 text-lg uppercase tracking-wider border-b border-[#BF953F]/10 first:border-t"
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                fontFamily: 'Cormorant Garamond',
-                animation: mobileMenuOpen ? `slideIn 0.5s ease forwards ${index * 0.1}s` : 'none',
-                opacity: 0,
-              }}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="flex flex-col h-full pt-24 pb-6">
+          <div className="flex-1 px-4">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="block w-full text-lg text-white hover:text-[#BF953F] transition-all duration-300 py-4 px-4 mb-2 rounded-lg bg-black hover:bg-[#1A1A1A] active:bg-[#262626]"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  fontFamily: 'Cormorant Garamond',
+                  animation: mobileMenuOpen ? `slideIn 0.5s ease forwards ${index * 0.1}s` : 'none',
+                  opacity: 0,
+                }}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+          
+          {/* Mobile Menu Footer */}
+          <div className="px-4 py-6 border-t border-[#BF953F]/20 bg-black">
+            <p className="text-sm text-white/80 text-center" style={{ fontFamily: 'Cormorant Garamond' }}>
+              © 2024 C De Cerff Inc.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-500 ${
-          mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 bg-black/70 md:hidden transition-opacity duration-500 ${
+          mobileMenuOpen ? 'opacity-100 z-40' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setMobileMenuOpen(false)}
       />

@@ -47,7 +47,7 @@ export function Navbar() {
             className="text-2xl font-bold tracking-tight text-transparent bg-clip-text gold-gradient hover:opacity-80 transition-opacity duration-300"
             style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700, letterSpacing: '-0.5px' }}
           >
-            C De Cerff Inc.
+            Template Attorneys
           </Link>
 
           {/* Desktop Navigation */}
@@ -116,7 +116,7 @@ export function Navbar() {
           {/* Mobile Menu Footer */}
           <div className="px-4 py-6 border-t border-gold-500/20 bg-black/80">
             <p className="text-sm text-white/80 text-center" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 500 }}>
-              © 2024 C De Cerff Inc.
+              © 2024 Template Attorneys
             </p>
           </div>
         </div>

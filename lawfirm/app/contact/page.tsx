@@ -1,8 +1,11 @@
+'use client'
+
 import Image from "next/image"
 import { Button } from "../../components/ui/button"
 import { Input } from "../../components/ui/input"
 import { Textarea } from "../../components/ui/textarea"
 import { Label } from "../../components/ui/label"
+import { useEffect } from "react"
 import { 
   LucidePhone, 
   LucideMail, 
@@ -12,15 +15,36 @@ import {
 } from "lucide-react"
 
 export default function ContactPage() {
+  useEffect(() => {
+    const reveals = document.querySelectorAll('.reveal')
+    const handleScroll = () => {
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight
+        const elementTop = element.getBoundingClientRect().top
+        const elementVisible = 150
+
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="bg-black min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20">
+      <section className="relative pt-24 pb-32">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/1.png"
             alt="Contact Us"
             fill
+            priority
             sizes="100vw"
             className="object-cover object-center brightness-50"
           />
@@ -29,22 +53,37 @@ export default function ContactPage() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
+            <h1 className="text-5xl sm:text-6xl font-bold mb-6 fade-in gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
               Contact Us
             </h1>
-            <p className="text-xl text-gray-300 mb-8" style={{ fontFamily: 'Cormorant Garamond' }}>
+            <p className="text-xl text-gray-300 mb-8 fade-in" style={{ fontFamily: 'Cormorant Garamond', animationDelay: '0.2s' }}>
               Get in touch with our legal experts for a confidential consultation.
             </p>
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,0 C720,120 720,0 1440,0 L1440,120 L0,120 Z" 
+              fill="#000" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20">
+      <section className="relative bg-black pt-20 pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-8 reveal">
               <div>
                 <h2 className="text-3xl font-bold mb-6 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
                   Get in Touch
@@ -95,7 +134,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="gold-border backdrop-blur-sm p-8 rounded-lg">
+            <div className="gold-border backdrop-blur-sm p-8 rounded-lg reveal">
               <h3 className="text-2xl font-bold mb-6 text-[#BF953F]" style={{ fontFamily: 'Playfair Display' }}>
                 Send Us a Message
               </h3>
@@ -174,12 +213,27 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,120 C720,0 720,120 1440,120 L1440,0 L0,0 Z" 
+              fill="#1a1a1a" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="bg-[#1a1a1a] relative pt-20 pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="gold-border rounded-lg overflow-hidden h-[400px] relative">
+          <div className="gold-border rounded-lg overflow-hidden h-[400px] relative reveal">
             {/* Replace with actual map implementation */}
             <div className="absolute inset-0 bg-[#BF953F]/10 flex items-center justify-center">
               <p className="text-[#BF953F]" style={{ fontFamily: 'Cormorant Garamond' }}>
@@ -188,12 +242,27 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,0 C720,120 720,0 1440,0 L1440,120 L0,120 Z" 
+              fill="#000" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Emergency Contact */}
-      <section className="py-20">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center reveal">
             <h2 className="text-3xl font-bold mb-6 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
               Need Urgent Legal Assistance?
             </h2>

@@ -1,6 +1,9 @@
+'use client'
+
 import Image from "next/image"
 import { Button } from "../../components/ui/button"
 import Link from "next/link"
+import { useEffect } from "react"
 import { 
   LucideArrowRight, 
   LucideScale, 
@@ -15,35 +18,71 @@ import {
 } from "lucide-react"
 
 export default function ServicesPage() {
+  useEffect(() => {
+    const reveals = document.querySelectorAll('.reveal')
+    const handleScroll = () => {
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight
+        const elementTop = element.getBoundingClientRect().top
+        const elementVisible = 150
+
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="bg-black min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20">
+      <section className="relative pt-32 pb-32 min-h-[80vh] flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/1.png"
             alt="Legal Services"
             fill
+            priority
             sizes="100vw"
-            className="object-cover object-center brightness-50"
+            className="object-cover object-center brightness-40"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
-              Our Legal Services
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold fade-in gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
+              Legal Services
             </h1>
-            <p className="text-xl text-gray-300 mb-8" style={{ fontFamily: 'Cormorant Garamond' }}>
-              Comprehensive legal solutions tailored to your unique needs.
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed fade-in" style={{ fontFamily: 'Cormorant Garamond', animationDelay: '0.2s' }}>
+              Professional legal solutions for your needs
             </p>
           </div>
+        </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,0 C720,120 720,0 1440,0 L1440,120 L0,120 Z" 
+              fill="#000" 
+              className="transition-all duration-300"
+            />
+          </svg>
         </div>
       </section>
 
       {/* Main Services */}
-      <section className="py-20">
+      <section className="relative bg-black pt-20 pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -83,7 +122,8 @@ export default function ServicesPage() {
             ].map((service, index) => (
               <div
                 key={index}
-                className="gold-border backdrop-blur-sm p-8 rounded-lg"
+                className="gold-border backdrop-blur-sm p-8 rounded-lg reveal"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <service.icon className="w-12 h-12 mb-6 text-[#BF953F]" />
                 <h3 className="text-2xl font-bold mb-4 text-[#BF953F]" style={{ fontFamily: 'Playfair Display' }}>
@@ -104,12 +144,27 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,120 C720,0 720,120 1440,120 L1440,0 L0,0 Z" 
+              fill="#1a1a1a" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Additional Services */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="bg-[#1a1a1a] relative pt-20 pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
+          <h2 className="text-4xl font-bold text-center mb-16 gold-gradient reveal" style={{ fontFamily: 'Playfair Display' }}>
             Additional Areas of Practice
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -147,7 +202,8 @@ export default function ServicesPage() {
             ].map((service, index) => (
               <div
                 key={index}
-                className="gold-border backdrop-blur-sm p-6 rounded-lg"
+                className="gold-border backdrop-blur-sm p-6 rounded-lg reveal"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <service.icon className="w-8 h-8 mb-4 text-[#BF953F]" />
                 <h3 className="text-xl font-bold mb-2 text-[#BF953F]" style={{ fontFamily: 'Playfair Display' }}>
@@ -160,12 +216,27 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,0 C720,120 720,0 1440,0 L1440,120 L0,120 Z" 
+              fill="#000" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-20">
+      <section className="bg-black relative pt-20 pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
+          <h2 className="text-4xl font-bold text-center mb-16 gold-gradient reveal" style={{ fontFamily: 'Playfair Display' }}>
             Our Process
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -193,7 +264,8 @@ export default function ServicesPage() {
             ].map((step, index) => (
               <div
                 key={index}
-                className="flex items-start mb-12"
+                className="flex items-start mb-12 reveal"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="text-3xl font-bold text-[#BF953F] mr-6" style={{ fontFamily: 'Playfair Display' }}>
                   {step.number}
@@ -210,10 +282,25 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
+
+        {/* Wave Transition */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden translate-y-1">
+          <svg 
+            preserveAspectRatio="none" 
+            viewBox="0 0 1440 120" 
+            className="relative block w-full h-[120px]"
+          >
+            <path 
+              d="M0,120 C720,0 720,120 1440,120 L1440,0 L0,0 Z" 
+              fill="#1a1a1a" 
+              className="transition-all duration-300"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative">
+      <section className="py-20 relative bg-[#1a1a1a]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/lawbooks.png"
@@ -226,7 +313,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center reveal">
             <h2 className="text-4xl font-bold mb-6 gold-gradient" style={{ fontFamily: 'Playfair Display' }}>
               Need Legal Assistance?
             </h2>

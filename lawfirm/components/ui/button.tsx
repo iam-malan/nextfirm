@@ -1,29 +1,31 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 disabled:pointer-events-none disabled:opacity-50 group",
   {
     variants: {
       variant: {
         default:
-          "bg-white text-black hover:bg-gray-200",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-white bg-transparent hover:bg-white/10 text-white",
+          "bg-white text-black border border-gold-300 hover:bg-gold-50 hover:border-gold-400 focus:ring-gold-500",
+        primary:
+          "bg-gold-600 text-white hover:bg-gold-700 hover:shadow-md focus:ring-gold-500",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-white/10 text-white",
-        link: "text-white underline-offset-4 hover:underline",
+          "bg-gold-100 text-gold-800 hover:bg-gold-200 focus:ring-gold-500",
+        outline:
+          "border border-gold-300 bg-transparent text-gold-700 hover:bg-gold-50 hover:border-gold-400",
+        ghost: 
+          "text-gold-700 hover:bg-gold-100 focus:ring-gold-500",
+        link: 
+          "text-gold-700 underline-offset-4 hover:text-gold-900 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "h-10 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-12 rounded-md px-8 text-lg",
-        icon: "h-9 w-9",
+        lg: "h-12 rounded-md px-8 text-base",
+        icon: "h-10 w-10 p-0 justify-center",
       },
     },
     defaultVariants: {

@@ -37,15 +37,15 @@ export function Navbar() {
   ]
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-black shadow-lg' : 'bg-transparent'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors-all duration-500 ${
+      scrolled ? 'bg-black/90 backdrop-blur-md shadow-gold-soft' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link 
             href="/" 
-            className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] to-[#FCF6BA] hover:from-[#FCF6BA] hover:to-[#BF953F] transition-all duration-300"
-            style={{ fontFamily: 'Playfair Display' }}
+            className="text-2xl font-bold tracking-tight text-transparent bg-clip-text gold-gradient hover:opacity-80 transition-opacity duration-300"
+            style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700, letterSpacing: '-0.5px' }}
           >
             C De Cerff Inc.
           </Link>
@@ -56,18 +56,23 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-[#BF953F] transition-colors duration-300 text-sm uppercase tracking-wider relative group"
-                style={{ fontFamily: 'Cormorant Garamond' }}
+                className="text-white hover:text-gold-400 transition-colors duration-300 text-sm uppercase tracking-wider relative group"
+                style={{ 
+                  fontFamily: 'Bodoni Moda, serif', 
+                  fontWeight: 600, 
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase'
+                }}
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#BF953F] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#BF953F] p-2 hover:bg-white/10 rounded-full transition-colors duration-300"
+            className="md:hidden text-gold-500 p-2 hover:bg-gold-500/10 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -82,7 +87,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black shadow-2xl transition-all duration-500 ease-in-out transform z-50 ${
+        className={`fixed inset-y-0 right-0 w-[80%] max-w-sm bg-black/95 backdrop-blur-xl shadow-2xl transition-transform duration-500 ease-in-out transform z-50 ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
@@ -92,10 +97,13 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block w-full text-lg text-white hover:text-[#BF953F] transition-all duration-300 py-4 px-4 mb-2 rounded-lg bg-black hover:bg-[#1A1A1A] active:bg-[#262626]"
+                className="block w-full text-lg text-white hover:text-gold-400 transition-all duration-300 py-4 px-4 mb-2 rounded-lg bg-black/80 hover:bg-gold-900/20 active:bg-gold-900/30"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  fontFamily: 'Cormorant Garamond',
+                  fontFamily: 'Bodoni Moda, serif',
+                  fontWeight: 600,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
                   animation: mobileMenuOpen ? `slideIn 0.5s ease forwards ${index * 0.1}s` : 'none',
                   opacity: 0,
                 }}
@@ -106,8 +114,8 @@ export function Navbar() {
           </div>
           
           {/* Mobile Menu Footer */}
-          <div className="px-4 py-6 border-t border-[#BF953F]/20 bg-black">
-            <p className="text-sm text-white/80 text-center" style={{ fontFamily: 'Cormorant Garamond' }}>
+          <div className="px-4 py-6 border-t border-gold-500/20 bg-black/80">
+            <p className="text-sm text-white/80 text-center" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 500 }}>
               © 2024 C De Cerff Inc.
             </p>
           </div>

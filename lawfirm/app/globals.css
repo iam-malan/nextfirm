@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,19 +12,19 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --primary: 38 59% 43%; /* Gold-themed primary color */
+    --primary-foreground: 38 100% 96%;
+    --secondary: 38 59% 95%;
+    --secondary-foreground: 38 59% 43%;
+    --muted: 38 59% 95%;
+    --muted-foreground: 38 20% 50%;
+    --accent: 38 59% 95%;
+    --accent-foreground: 38 59% 43%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 38 30% 80%;
+    --input: 38 30% 80%;
+    --ring: 38 59% 43%;
     --radius: 0.5rem;
   }
 }
